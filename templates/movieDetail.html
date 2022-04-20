@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>detail page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/detail.css">
+</head>
+
+<body>
+<nav class="navbar navbar-black bg-black">
+    <div class="container-fluid">
+        <a class="navbar-brand"><img src="../static/img/logo2.jpg"></a>
+    </div>
+</nav>
+
+
+    <div id="container">
+        <div class="movieDetail">
+            <div class="Box_1">
+                <div class="left_box">
+                    <h2>{{movieDetail['title']}}</h2><br>
+                    <div class="meta">
+                        <p><span>개봉날짜</span>&emsp; {{movieDetail['openDate']}}</p>
+                        <p><span>장르</span>&emsp; {{movieDetail['genre']}}</p>
+                        <p><span>국가</span>&emsp; {{movieDetail['nation']}}</p>
+                        <p><span>상영시간</span>&emsp; {{movieDetail['runtime']}}</p>
+                        <p><span>나이</span>&emsp; {{movieDetail['age']}}</p>
+                        <p><span>배우</span>&emsp; {{movieDetail['actors']}}</p>
+                    </div>
+                </div>
+
+                <div class="left_box">
+                    <img src="{{movieDetail['img']}}">
+                </div>
+            </div>
+
+            <div class="Box_2">
+                <div class="content">
+                    <h3>줄거리</h3><br>
+                    <p>{{movieDetail['story']}}</p>
+                </div>
+            </div>
+
+            <div class="Box_3">
+                <h3>영화 Review WordCloud</h3>
+                <div class="wordLike">
+                <h5>긍정 Review</h5><br>
+                    <img src="{{wordCloudImgPath_po}}"></div>
+
+                <div class="wordDislike">
+                <h5>부정 Review</h5><br>
+                    <img src="{{wordCloudImgPath_ne}}"></div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

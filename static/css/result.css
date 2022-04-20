@@ -1,0 +1,78 @@
+
+
+body{
+    background-color: black;
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #383b3d;
+}
+
+h4{
+    line-height:1.8;
+    margin-inline: 11px;
+    color: silver;
+    font-weight: revert;
+}
+
+.card{
+    overflow: hidden;
+    background-color: black;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+/*방문하지 않은 링크의 글자색*/
+a:link {
+  color : white;
+  text-decoration: none;
+}
+
+/*방문한 적이 있는 링크의 글자색*/
+a:visited {
+  color : dimgray;
+  /*text-decoration: none;*/
+}
+
+/*마우스를 링크에 올려두었을 때, 글자색*/
+a:hover {
+  color : dimgray;
+  text-decoration: underline;
+}
+
+
+.card-img-top{
+/*    height: 40vh;
+    width: 100%;    */
+    object-fit: cover;
+}
+
+.card-body{
+    height: 190px;
+    color: white;
+}
+
+.owl-prev{
+    left: -30px;
+}
+
+.owl-next{
+    right: -30px;
+}
+
+.owl-prev , .owl-next{
+    position: absolute;
+    top: 110px;
+}
+
+.owl-prev span , .owl-next span{
+    font-size: 100px;
+    color: white;
+}
+
+.owl-theme , .owl-nav[class*="owl-"]:hover{
+    background: transparent;
+}

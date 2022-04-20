@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>index page</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    <!-- radio 버튼 선택 해제 -->
+    function disselect() {
+        var mbti = document.getElementsByName("mbti");
+        for (var i = 0; i < mbti.length; i++) {
+            if (mbti[i].getAttribute('type') === 'radio') {
+                mbti[i].checked = false;
+            }
+        }
+    }
+
+    <!--로딩중 구현-->
+    function checkValue(){
+        mbtiCheck = mbtiCheckValue();
+        genreCheck = genreCheckValue();
+        ratingCnt = ratingCheckValue();
+
+        if (genreCheck != true){
+            swal("잠시만요!","장르를 선택해 주세요.","warning");
+            window.location.href = "#genreSection"
+        }
+        else if (mbtiCheck != true){
+            swal("잠시만요!", "MBTI를 선택해 주세요.", "warning");
+            window.location.href = "#mbtiSection"
+        }
+        else if (ratingCnt < 5){
+            swal("잠시만요!", "영화는 5개 이상 평가 해 주세요.", "warning");
+                window.location.href = "#ratingSection"        }
+        else{
+            document.frm.submit();
+        }
+    }
+
+    /*   Mbti 체크   */
+    function mbtiCheckValue(){
+        var mbti_length = document.getElementsByName("mbti").length;
+        mbtiCheck = false;
+        for (var i=0; i<mbti_length; i++){
+            if (document.getElementsByName("mbti")[i].checked == true){
+                mbtiCheck = true;
+                selectedMBTI = document.getElementsByName("mbti")[i].value;
+                break;
+            }
+        }
+        return mbtiCheck;
+    }
+
+    /*   장르 체크   */
+    function genreCheckValue(){
+        var genre_len = document.getElementsByName("genre").length;
+
+        genreCheck = false;
+        selectedGenre = ""
+        for (var i=0; i<genre_len; i++){
+            if (document.getElementsByName("genre")[i].checked == true){
+                genreCheck = true;
+                selectedGenre = selectedGenre + "," + document.getElementsByName("genre")[i].value
+            }
+        }
+        return genreCheck
+    }
+
+    /*   영화 점수 여부 체크   */
+    function ratingCheckValue(){
+        var movieInfoLen = document.getElementsByClassName('range').length;
+        ratingCnt = 0;
+        for (var i=0; i<movieInfoLen; i++){
+            if(parseInt(document.getElementsByClassName('range')[i].value) > 0){
+                ratingCnt = ratingCnt + 1;
+            }
+        }
+        return ratingCnt
+    }
+
+</script>
+
+<body>
+<form name="frm" action="/result" method="POST" encType="multipart/form-data">
+
+    <div id="header">
+        <nav class="top">
+            <div class="logo"><img src="static/img/logo2.jpg"></div>
+        </nav>
+    </div>
+
+
+    <center id="container">
+        <div class="vidio">
+            <video autoplay muted loop style="width: -webkit-fill-available;">
+                <!-- muted는 처음 화면 떴을 때 소리제거해주는 거. -->
+                <source src="../static/vidio/indexVedio.mp4" type="video/mp4">
+            </video>
+        </div>
+
+
+        <div class="genre" id="genreSection">
+        <h3>선호하는 장르를 선택해주세요(중복가능)</h3>
+        <div class="row">
+            <label>
+                <input type="checkbox" name="genre" id="Family" value="가족" />
+                <div class="icon-box">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    <span>가족</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Comedy" value="코미디" />
+                <div class="icon-box">
+                    <i class="fa fa-music" aria-hidden="true"></i>
+                    <span>코미디</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Action" value="액션" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> 액션 </span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Adventure" value="모험" />
+                <div class="icon-box">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>모험</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Fantasy" value="판타지" />
+                <div class="icon-box">
+                    <i class="fa fa-dribbble" aria-hidden="true"></i>
+                    <span>판타지</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Romance" value="로맨스" />
+                <div class="icon-box">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>멜로/로맨스</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Drama" value="드라마" />
+                <div class="icon-box">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    <span>드라마</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="SF" value="SF" />
+                <div class="icon-box">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>SF</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Thriller" value="스릴러" />
+                <div class="icon-box">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    <span>스릴러</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Crime" value="범죄" />
+                <div class="icon-box">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>범죄</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Mystery" value="미스터리" />
+                <div class="icon-box">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    <span>미스터리</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="War" value="전쟁" />
+                <div class="icon-box">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>전쟁</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Horror" value="공포" />
+                <div class="icon-box">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    <span>공포</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Animation" value="애니메이션" />
+                <div class="icon-box">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>애니메이션</span>
+                </div>
+            </label>
+            <label>
+                <input type="checkbox" name="genre" id="Musical" value="뮤지컬" />
+                <div class="icon-box">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    <span>뮤지컬</span>
+                </div>
+            </label>
+        </div>
+    </div>
+
+
+    <div class="mbti" id="mbtiSection">
+        <h3>MBTI를 선택해주세요</h3>
+        <div class="row">
+            <label>
+                <input type="radio" id="INFP" name="mbti" value="INFP" />
+                <div class="icon-box">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    <span>INFP</span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ENFP" name="mbti" value="ENFP" />
+                <div class="icon-box">
+                    <i class="fa fa-music" aria-hidden="true"></i>
+                    <span>ENFP</span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="INFJ" name="mbti" value="INFJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> INFJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ENFJ" name="mbti" value="ENFJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ENFJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="INTP" name="mbti" value="INTP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> INTP </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ENTP" name="mbti" value="ENTP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ENTP </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="INTJ" name="mbti" value="INTJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> INTJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ENTJ" name="mbti" value="ENTJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ENTJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ISFJ" name="mbti" value="ISFJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ISFJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ESFJ" name="mbti" value="ESFJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ESFJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ISTJ" name="mbti" value="ISTJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ISTJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ESTJ" name="mbti" value="ESTJ" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ESTJ </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ISFP" name="mbti" value="ISFP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ISFP </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ESFP" name="mbti" value="ESFP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ESFP </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ISTP" name="mbti" value="ISTP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ISTP </span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" id="ESTP" name="mbti" value="ESTP" />
+                <div class="icon-box">
+                    <i class="fa fa-imdb" aria-hidden="true"></i>
+                    <span> ESTP </span>
+                </div>
+            </label>
+
+        </div>
+<!--        <button type="button" class="btn-4" onclick="disselect()">선택 취소</button>-->
+    </div>
+
+
+        <div class="poster" id="ratingSection">
+            <h3>작품을 평가해주세요 :)</h3>
+            <div class="check-poster">
+                <div class="container">
+                    <table border="1">
+                        {% for movie in movieInfoList %}
+                        <tbody>
+                        <tr>
+                            <td style="width: 440px; height: 440px; padding-inline: 8%;">
+                                <label for="movie_info"><img src="{{movie['img']}}" width="250"
+                                                             height="360"/></label>
+                            </td>
+                            <td style="color: white; line-height: 3; font-size: 20px; padding-inline: 86px; ">
+                                <b>제목</b>: {{movie['title']}}
+                                <br>
+                                <b>장르</b>: {{movie['genre']}}
+                                <br>
+                                <b>배우</b>: {{movie['actor']}}
+                                <br>
+                                <b>점수</b>:
+                                0<input type="range" id="movie_info" class="range" min="0" max="10"
+                                        list="numlist" value="0" name="rating_{{movie['id']}}">10
+                                <datalist id="numlist">
+                                    <option value="0"></option>
+                                    <option value="1"></option>
+                                    <option value="2"></option>
+                                    <option value="3"></option>
+                                    <option value="4"></option>
+                                    <option value="5"></option>
+                                    <option value="6"></option>
+                                    <option value="7"></option>
+                                    <option value="8"></option>
+                                    <option value="9"></option>
+                                    <option value="10"></option>
+                                </datalist>
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="bottom">
+        <input type="button" class="btn-5" name="searchButton" value="결과보기" onClick="checkValue()" />
+    </div>
+</form>
+
+</body>
+
+</html>

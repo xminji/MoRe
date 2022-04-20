@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>result page</title>
+
+    <!-- bootstrap의 css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="../static/css/result.css">
+
+    <!-- owl.carousel의 css -->
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-black bg-black">
+    <div class="container-fluid">
+        <a class="navbar-brand"><img src="../static/img/logo2.jpg"></a>
+<!--        <form class="d-flex">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--        </form>-->
+    </div>
+</nav>
+
+<br><br>
+
+<div class="container mt-5">
+    <h4>MBTI 기반 추천 영화</h4>
+    <div class="owl-carousel owl-theme">
+        {% for movie in mbtiRecomInfoDictList %}
+        <div class="ms-2 me-2">
+            <div class="card">
+                <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                    <img data-src="{{movie['img']}}" class="card-img-top owl-lazy" width="260" height="370"/></a>
+                <div class="card-body">
+                    <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                        <h5 class="card-title">{{movie['title']}}</h5></a>
+                    <b>장르</b> {{movie['genre']}}
+                    <br>
+                    <b>배우</b> {{movie['actors']}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+
+    <h4>선택한 선호 장르의 추천 영화</h4>
+    <div class="owl-carousel owl-theme">
+      {% for movie in genreRecomInfoDictList %}
+        <div class="ms-2 me-2">
+            <div class="card">
+                <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                    <img data-src="{{movie['img']}}" class="card-img-top owl-lazy" width="260" height="370"/></a>
+                <div class="card-body">
+                    <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                        <h5 class="card-title">{{movie['title']}}</h5></a>
+                    <b>장르</b>: {{movie['genre']}}
+                    <br>
+                    <b>배우</b>: {{movie['actors']}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+
+    <h4>국내 CF 기반 추천 영화</h4>
+    <div class="owl-carousel owl-theme">
+      {% for movie in cfRecomInfoDictList_KOR %}
+        <div class="ms-2 me-2">
+            <div class="card">
+                <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                    <img data-src="{{movie['img']}}" class="card-img-top owl-lazy" width="260" height="370"/></a>
+                <div class="card-body">
+                    <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                        <h5 class="card-title">{{movie['title']}}</h5></a>
+                    <b>장르</b>: {{movie['genre']}}
+                    <br>
+                    <b>배우</b>: {{movie['actors']}}
+                    <br>
+                    <b>추천 점수</b>: {{movie['rating']}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+
+    <h4>해외 CF 기반 추천 영화</h4>
+    <div class="owl-carousel owl-theme">
+      {% for movie in cfRecomInfoDictList_FOR %}
+        <div class="ms-2 me-2">
+            <div class="card">
+                <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                    <img data-src="{{movie['img']}}" class="card-img-top owl-lazy" width="260" height="370"/></a>
+                <div class="card-body">
+                    <a href="movieDetail?id={{movie['id']}}&year={{movie['year']}}" target="_blank">
+                        <h5 class="card-title">{{movie['title']}}</h5></a>
+                    <b>장르</b>: {{movie['genre']}}
+                    <br>
+                    <b>배우</b>: {{movie['actors']}}
+                    <br>
+                    <b>추천 점수</b>: {{movie['rating']}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+
+</div>
+
+
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="../static/js/result.js"></script>
+</body>
+
+</html>

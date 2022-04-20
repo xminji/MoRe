@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#header{
+  width:100%;
+  height:100%;
+}
+
+.logo{
+  padding:2%;
+}
+
+#container{
+    position: relative;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.movieDetail{
+  position: absolute;
+  border-radius: 15px;
+  padding: 40px;
+  background-color: #2727279e;
+  margin: 5% 18%;
+  width: 1000px;
+}
+
+.movieDetail h2{
+  display: flex;
+  margin-inline: 0%;
+  font-size: 200%;
+  font-weight : 900;
+}
+.movieDetail h3{
+    font-size: 140%;
+    font-weight: 1000;
+}
+
+.Box_1{
+  width: auto;
+  height: auto;
+  display: flex;
+  margin-inline: 10%;
+  justify-content: space-between;
+  padding: 7% 0% 1% 0%;
+  font-size : large;
+}
+
+.meta span{
+  font-weight: 700;
+}
+
+.meta p{
+    margin-top: 22px;
+    display: block;
+    width: 150%;
+    height: 30px;
+}
+
+
+.Box_1 .left_box img{
+    max-width: 100%;
+    display: block;
+    width: 270px;
+    height: 375px;
+}
+
+.right_box{
+  width: 45%;
+}
+
+.Box_2{
+  width: auto;
+  height: auto;
+  display: flex;
+  margin-inline: 10%;
+
+  padding: 5% 0% 5% 0%;
+}
+
+.Box_3{
+  margin-inline: 10%;
+  flex-direction: column;
+  border-top: solid 1.5px #dcdcdc29;
+  padding: 5% 0% 9% 0%;
+}
+
+.Box_3 h5 {
+    line-height: 1;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 8%;
+    font-size: 160%;
+}
+.Box_3 .wordDislike h5{
+    margin-right: 8%
+}
+.wordLike{
+    float: left;
+    margin-left: -50px;
+}
+.wordLike img{
+    filter:invert(10%);
+}
+
+.wordDislike{
+    float: right;
+    margin-right: -27px;
+}
+.wordDislike img{
+    filter:invert(10%);
+}
+.Box_3 img{
+    width: 110%;
+    height: 380px;
+    border-radius: 3%;
+
+}
